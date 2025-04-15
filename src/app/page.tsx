@@ -31,7 +31,7 @@ export default async function Home() {
           <p>前日終値: ¥{quote.regularMarketPreviousClose}</p>
           <p>出来高: {quote.regularMarketVolume}</p>
           <p>発行株式数: {quote.sharesOutstanding}</p>
-          <p>純利益: {junneriki}</p>
+          
           <p>配当: {dividendRate}</p>
           <p>配当利回り: {Number(dividendRate)/Number(quote.regularMarketPrice)*100}%</p>
         </CardContent>
