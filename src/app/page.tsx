@@ -6,6 +6,14 @@ import yahooFinance from "yahoo-finance2";
 export default async function Home() {
   const quote = await yahooFinance.quote('7974.T');
 
+  const junneriki = Number(quote.marketCap) / Number(quote.sharesOutstanding);
+
+  const summary = await yahooFinance.quoteSummary("7974.T", {
+    modules: ["summaryDetail", "financialData"],
+  });
+  
+  const dividendRate = summary.summaryDetail?.dividendRate;
+
   return (
     <main className="p-4">
       <h1 className="text-xl font-bold mb-2">株価情報（7974.T）</h1>
@@ -16,11 +24,15 @@ export default async function Home() {
         </CardHeader>
         <CardContent>
           <p>現在価格: ¥{quote.regularMarketPrice}</p>
+          <p>時価総額: ¥{quote.marketCap}</p>
           <p>始値: ¥{quote.regularMarketOpen}</p>
           <p>高値: ¥{quote.regularMarketDayHigh}</p>
           <p>安値: ¥{quote.regularMarketDayLow}</p>
           <p>前日終値: ¥{quote.regularMarketPreviousClose}</p>
           <p>出来高: {quote.regularMarketVolume}</p>
+          <p>発行株式数: {quote.sharesOutstanding}</p>
+          <p>純利益: {junneriki}</p>
+          <p>配当: {dividendRate}</p>
         </CardContent>
       </Card>
     </main>
