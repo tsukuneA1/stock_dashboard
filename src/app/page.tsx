@@ -6,8 +6,6 @@ import yahooFinance from "yahoo-finance2";
 export default async function Home() {
   const quote = await yahooFinance.quote('7974.T');
 
-  const junneriki = Number(quote.marketCap) / Number(quote.sharesOutstanding);
-
   const summary = await yahooFinance.quoteSummary("7974.T", {
     modules: ["summaryDetail", "financialData"],
   });
